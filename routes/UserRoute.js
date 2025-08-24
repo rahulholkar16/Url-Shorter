@@ -4,10 +4,6 @@ import { UrlValidation } from "../Validation/UrlValidation.js";
 
 const route = express.Router();
 
-route.post('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'index.html'));
-})
-
 route.post('/short', async (req, res) => {
     const { url } = req.body;
 
