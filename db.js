@@ -14,4 +14,5 @@ const UrlSchema = new Schema({
     "sortUrl": { type: String, unique: true },
 }, { timestamps: true });
 
+export  const UserModel = mongoose.model("user", UserSchema);
 export const UrlModel = mongoose.model("url", UrlSchema);

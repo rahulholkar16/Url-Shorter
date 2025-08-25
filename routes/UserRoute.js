@@ -1,10 +1,47 @@
-import { UrlModel } from "../db.js";
-import { express, nanoid} from "../utils/ImortExport.js";
+import { bcrypt, express, nanoid, UrlModel, UserModel} from "../utils/ImortExport.js";
+import { authValidationSchema } from "../Validation/authValidation.js";
 import { UrlValidation } from "../Validation/UrlValidation.js";
 
 const route = express.Router();
 
+route.post('/signup', async (req, res) => {
+    const { name, email, password } = req.body;
 
+    // Validation
+    const result = authValidationSchema.safeParse({ name, email, password });
+    if(!result.success) {
+        return res.status(400).json({
+            msg: "Validation failed!",
+            error: result.error.issues.map(issue => ({
+                path: issue.path.join('.'),
+                message: issue.message
+            }))
+        });
+    }
+
+    try {
+        // avoid duplicates users
+        const exists = await UserModel.findOne({ email: result.data.email });
+        if (exists) return res.status(400).json({ mag: "User alredy exist!" });
+
+        // create hash for password
+        const hash = await bcrypt.hash(result.data.password, 5);
+        
+        // add in db
+        await UserModel.create({
+            name: result.data.name,
+            email: result.data.email,
+            password: hash,
+            userHistory: []
+        });
+
+        res.status(201).json({
+            msg: "User added Successfully!"
+        });
+    } catch (error) {
+        return res.status(500).json({ msg: "Error creating user", error: e.message });
+    }
+});
 
 route.post('/short', async (req, res) => {
     const { url } = req.body;

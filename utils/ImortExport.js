@@ -7,5 +7,6 @@ import { fileURLToPath } from 'url';
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import cookieParser from "cookie-parser";
+import { UserModel, UrlModel } from "../db.js";
 
-export { express, mongoose, nanoid, path, fileURLToPath, jwt, bcrypt, cookieParser };
+export { express, mongoose, nanoid, UserModel, UrlModel, path, fileURLToPath, jwt, bcrypt, cookieParser };
