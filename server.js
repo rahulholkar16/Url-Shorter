@@ -1,5 +1,5 @@
 import route from "./routes/UserRoute.js";
-import { express, mongoose, fileURLToPath, path } from "./utils/ImortExport.js";
+import { express, mongoose, fileURLToPath, path, auth } from "./utils/ImortExport.js";
 
 
 const __filename = fileURLToPath(import.meta.url);

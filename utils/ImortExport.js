@@ -8,5 +8,6 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import cookieParser from "cookie-parser";
 import { UserModel, UrlModel } from "../db.js";
+import { auth } from "../middlewares/AuthMiddlewares.js";
 
-export { express, mongoose, nanoid, UserModel, UrlModel, path, fileURLToPath, jwt, bcrypt, cookieParser };
+export { express, mongoose, nanoid, auth, UserModel, UrlModel, path, fileURLToPath, jwt, bcrypt, cookieParser };

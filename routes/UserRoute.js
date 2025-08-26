@@ -1,4 +1,4 @@
-import { bcrypt, express, nanoid, UrlModel, UserModel} from "../utils/ImortExport.js";
+import { bcrypt, express, nanoid, UrlModel, UserModel, auth, jwt} from "../utils/ImortExport.js";
 import { authValidationSchema } from "../Validation/authValidation.js";
 import { UrlValidation } from "../Validation/UrlValidation.js";
 
@@ -43,7 +43,30 @@ route.post('/signup', async (req, res) => {
     }
 });
 
-route.post('/short', async (req, res) => {
+route.post('/login', async (req, res) => {
+    const { email, password } = req.headers;
+
+    try {
+        const user = await UserModel.findOne({ email });
+        if (!user) return res.status(400).json({ msg: "Invalid email and password!" });
+
+        const ok = await bcrypt.compare(password, user?.password);
+        if(!ok) return res.status(400).json({ msg: "Invalid Password!" });
+
+        const token = jwt.sign({ id: user?._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+        res.cookie("token", token, {
+            httpOnly: true,
+            // secure: true,         // Uncomment in Production(HTTPS)
+            maxAge: 24 * 60 * 60 * 1000
+        });
+
+        return res.status(200).json({ msg: "Loging successfully!" });
+    } catch (error) {
+        return res.status(500).json({ msg: "Error in Login: ", error: e.message });
+    }
+})
+
+route.post('/short', auth, async (req, res) => {
     const { url } = req.body;
 
     const result = UrlValidation.safeParse({ url });
