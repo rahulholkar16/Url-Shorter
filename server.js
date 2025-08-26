@@ -1,5 +1,5 @@
 import route from "./routes/UserRoute.js";
-import { express, mongoose, fileURLToPath, path, auth } from "./utils/ImortExport.js";
+import { express, mongoose, fileURLToPath, path, auth, cookieParser } from "./utils/ImortExport.js";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 app.use('/', express.static(path.join(__dirname, 'client')));
 
 // ----- Route -----

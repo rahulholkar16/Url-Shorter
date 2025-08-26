@@ -1,8 +1,11 @@
-import { jwt } from "../utils/ImortExport.js";
+import { jwt, UserModel } from "../utils/ImortExport.js";
 
 export async function auth(req, res, next) {
     try {
-        const token = req.cookies?.token;
+        const token = req.cookies.token;
+
+        console.log(token);
+        
         if (!token) return res.status(401).json({ msg: "No token provide!" });
 
         const decode = jwt.verify(token, process.env.JWT_SECRET);

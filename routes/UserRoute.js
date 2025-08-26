@@ -60,13 +60,14 @@ route.post('/login', async (req, res) => {
             maxAge: 24 * 60 * 60 * 1000
         });
 
-        return res.status(200).json({ msg: "Loging successfully!" });
+        return res.status(200).json({ msg: "Loging successfully!", token: token });
     } catch (error) {
         return res.status(500).json({ msg: "Error in Login: ", error: e.message });
     }
 })
 
 route.post('/short', auth, async (req, res) => {
+    // const { userId } = req.cookies
     const { url } = req.body;
 
     const result = UrlValidation.safeParse({ url });
@@ -85,7 +86,8 @@ route.post('/short', auth, async (req, res) => {
 
         const response = await UrlModel.create({
             origenalUrl: url,
-            sortUrl: shortUrl
+            sortUrl: shortUrl,
+            // user: userId
         })
 
         return res.status(200).json({
