@@ -67,8 +67,10 @@ route.post('/login', async (req, res) => {
 })
 
 route.post('/short', auth, async (req, res) => {
-    // const { userId } = req.cookies
+    const { userId } = req
     const { url } = req.body;
+    console.log(userId);
+    
 
     const result = UrlValidation.safeParse({ url });
     if (!result.success) {
@@ -87,8 +89,14 @@ route.post('/short', auth, async (req, res) => {
         const response = await UrlModel.create({
             origenalUrl: url,
             sortUrl: shortUrl,
-            // user: userId
+            user: userId
         })
+
+        // add url in userHistory
+
+        await UserModel.findByIdAndUpdate( userId, {
+            $push: { userHistory: response._id }
+        } )
 
         return res.status(200).json({
             msg: "Url shorted!",
@@ -106,7 +114,7 @@ route.get('/:url', async (req, res) => {
     try {
         const exist = await UrlModel.findOne({ sortUrl: url });
         if (!exist) return res.status(401).json({ msg: "Invalid credentials" });
-
+        
         res.status(200).redirect(exist.origenalUrl);
     } catch (error) {
         console.error("Error creating course:", error);

@@ -6,7 +6,7 @@ const UserSchema = new Schema({
     "name": { type: String, required: true },
     "email": { type: String, unique: true, required: true },
     "password": { type: String, required: true },
-    "userHistory": [{ type: Schema.Types.ObjectId, ref: "history" }]
+    "userHistory": [{ type: Schema.Types.ObjectId, ref: "url" }]
 })
 
 const UrlSchema = new Schema({
