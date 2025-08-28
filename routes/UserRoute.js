@@ -46,7 +46,7 @@ route.post('/signup', async (req, res) => {
 });
 
 route.post('/login', async (req, res) => {
-    const { email, password } = req.headers;
+    const { email, password } = req.body;
 
     try {
         const user = await UserModel.findOne({ email });
@@ -70,7 +70,9 @@ route.post('/login', async (req, res) => {
 
 route.get('/dashboard', auth, (req, res) => {
     try {
-        res.status(200).sendFile(path.join(__dirname, '../client', 'DashboardPage/dashboard.html'))
+        res.status(200).json({
+            success: true,
+        })
     } catch (error) {
         res.status(400).json({
             success: false,

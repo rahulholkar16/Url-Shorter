@@ -22,13 +22,9 @@ SignUpBtn.addEventListener('click', async (e) => {
         });
 
         const result = await response.json();
-        console.log(result);
 
         if (result.msg === "User added Successfully!") {
-            console.log("Hello");
-
             window.location.href = "../LoginPage/index.html";
-
         } else {
             alert(result.msg);
         }
