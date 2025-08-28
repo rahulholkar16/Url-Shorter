@@ -1,8 +1,10 @@
-import { bcrypt, express, nanoid, UrlModel, UserModel, auth, jwt} from "../utils/ImortExport.js";
+import { bcrypt, express, nanoid, UrlModel, UserModel, auth, jwt, path, fileURLToPath} from "../utils/ImortExport.js";
 import { authValidationSchema } from "../Validation/authValidation.js";
 import { UrlValidation } from "../Validation/UrlValidation.js";
 
 const route = express.Router();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 route.post('/signup', async (req, res) => {
     const { name, email, password } = req.body;
@@ -64,6 +66,10 @@ route.post('/login', async (req, res) => {
     } catch (error) {
         return res.status(500).json({ msg: "Error in Login: ", error: e.message });
     }
+})
+
+route.get('/dashboard', auth, (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, '../client', 'DashboardPage/dashboard.html'))
 })
 
 route.post('/short', auth, async (req, res) => {
