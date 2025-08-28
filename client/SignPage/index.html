@@ -13,8 +13,8 @@
     <header class="navbar">
         <div class="logo">Short<span>It</span></div>
         <nav>
-            <a href="/login">Login</a>
-            <a href="/signup" class="btn">Signup</a>
+            <a class="NavLogin">Login</a>
+            <a class="btn NavSignUp">Signup</a>
         </nav>
     </header>
 
@@ -26,7 +26,7 @@
             <h2>Create an Account</h2>
             <p class="muted">Join us and start shortening URLs today.</p>
 
-            <form>
+            <form id="signupForm">
                 <div class="input-group">
                     <label for="name">Full Name</label>
                     <input type="text" id="name" placeholder="John Doe" required>
@@ -42,18 +42,13 @@
                     <input type="password" id="password" placeholder="••••••••" required>
                 </div>
 
-                <div class="input-group">
-                    <label for="confirm">Confirm Password</label>
-                    <input type="password" id="confirm" placeholder="••••••••" required>
-                </div>
-
-                <div class="actions">
-                    <button type="submit" class="btn primary">Create Account</button>
+                <div >
+                    <button class="btn primary signup">Create Account</button>
                 </div>
             </form>
 
             <div class="links">
-                <p>Already have an account? <a href="/login">Login here</a></p>
+                <p>Already have an account? <a class="login">Login here</a></p>
             </div>
         </div>
     </main>
@@ -64,6 +59,9 @@
         <a href="#">Privacy Policy</a>
         <p>ShortIt ©2025. All Rights Reserved.</p>
     </footer>
+
+    <!-- JS -->
+     <script src="main.js"></script>
 </body>
 
 </html>
