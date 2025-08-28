@@ -36,6 +36,10 @@ body {
   flex-direction: column;
 }
 
+a {
+  cursor: pointer;
+}
+
 /* Navbar */
 .navbar {
   width: 100%;

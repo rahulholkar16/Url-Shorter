@@ -69,7 +69,15 @@ route.post('/login', async (req, res) => {
 })
 
 route.get('/dashboard', auth, (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, '../client', 'DashboardPage/dashboard.html'))
+    try {
+        res.status(200).sendFile(path.join(__dirname, '../client', 'DashboardPage/dashboard.html'))
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            msg: "Something wrong in Dashboard Route.!",
+            error: error
+        })
+    }
 })
 
 route.post('/short', auth, async (req, res) => {
