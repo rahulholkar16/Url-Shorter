@@ -1,54 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css">
-  <title>URL Shortener</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener | Landing Page</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="container">
-    <header class="header">
-      <h1 class="title">Sleek URL Shortener</h1>
-      <p class="subtitle">Paste a long URL, get a tidy short link with one click.</p>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">Short<span>It</span></div>
+        <nav>
+            <a href="/login">Login</a>
+            <a href="/signup" class="btn">Signup</a>
+        </nav>
     </header>
 
-    <section class="card">
-      <!-- CONFIG: Update these if your routes are mounted under a path (e.g., '/url') -->
-      <div class="chip" title="Adjust for your backend">
-        <strong>Config</strong>
-        <span id="configInfo"></span>
-      </div>
-
-      <div class="input-wrap">
-        <label class="label" for="longUrl">Long URL</label>
-        <input id="longUrl" class="url-input" type="url" placeholder="https://example.com/some/very/long/path?with=query&and=tracking" />
-        <div id="errorBox" class="error"></div>
-        <p class="helper">Tip: You can press <kbd>Enter</kbd> to shorten quickly.</p>
-      </div>
-
-      <div class="actions" style="margin-top:8px">
-        <button id="clearBtn" class="btn ghost" type="button">Clear</button>
-        <button id="shortenBtn" class="btn" type="button">Shorten URL</button>
-      </div>
-
-      <div id="result" class="result">
-        <div class="row" style="margin-top:12px">
-          <div class="short-url" id="shortUrlDisplay">—</div>
-          <button id="copyBtn" class="btn ghost" type="button">Copy</button>
-          <a id="openBtn" class="btn" target="_blank" rel="noopener" href="#">Open</a>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Shorten. Share. Track.</h1>
+            <p>Transform your long URLs into short, powerful links.
+                Manage everything with a simple dashboard.</p>
+            <div class="hero-buttons">
+                <a href="/signup" class="btn primary">Get Started</a>
+                <a href="/login" class="btn secondary">Login</a>
+            </div>
         </div>
-        <p class="helper" id="notes"></p>
-      </div>
 
-      <div class="footer">
-        <span>Built with ❤️ using your Node/Express backend.</span>
-        <span>Keyboard: <kbd>Enter</kbd> shorten • <kbd>Esc</kbd> clear</span>
-      </div>
+        <div class="hero-img">
+            <div class="dashboard-preview">
+                <h2>Dashboard Preview</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Original URL</th>
+                            <th>Short URL</th>
+                            <th>Clicks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>https://example.com/my-super-long-link...</td>
+                            <td>sho.rt/abc123</td>
+                            <td>120</td>
+                        </tr>
+                        <tr>
+                            <td>https://openai.com/chatgpt</td>
+                            <td>sho.rt/gpt45</td>
+                            <td>89</td>
+                        </tr>
+                        <tr>
+                            <td>https://github.com/yourrepo</td>
+                            <td>sho.rt/dev99</td>
+                            <td>45</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </section>
-  </div>
 
-  <!-- JS -->
-   <script src="main.js"></script>
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 ShortIt | Built with ❤️ using Node.js & MongoDB</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
+
 </html>

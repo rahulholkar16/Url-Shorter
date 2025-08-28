@@ -14,13 +14,12 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use('/', express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, 'client')));
 
 // ----- Route -----
-app.get('/', (req, res) => {
-    
-    res.sendFile(path.join(__dirname, 'client', 'index.html'));
-})
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'client', 'index.html'));
+// })
 
 app.use('/api/v1', route);
 app.use('/url', route);

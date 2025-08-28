@@ -4,8 +4,6 @@ export async function auth(req, res, next) {
     try {
         const token = req.cookies.token;
 
-        console.log(token);
-        
         if (!token) return res.status(401).json({ msg: "No token provide!" });
 
         const decode = jwt.verify(token, process.env.JWT_SECRET);

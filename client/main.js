@@ -49,6 +49,7 @@ async function shorten() {
         const res = await fetch(`${API_BASE}/short`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
+            credentials: "include",
             body: JSON.stringify({ url })
         });
 
