@@ -80,6 +80,24 @@ route.get('/dashboard', auth, (req, res) => {
             error: error
         })
     }
+});
+
+route.get('/history', auth,  async (req, res) => {
+    try {
+        const { userId } = req;
+
+        // Find the user and populate userHistory with full Url docs
+        const user = await UserModel.findById(userId).populate('userHistory');
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Respond with the user's URL history
+        res.json({ history: user.userHistory });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error });
+    }
 })
 
 route.post('/short', auth, async (req, res) => {

@@ -16,6 +16,8 @@ const openBtn = $('openBtn');
 const copyBtn = $('copyBtn');
 const notes = $('notes');
 const configInfo = $('configInfo');
+const dashboardBtn = $('dashboardnav');
+const History = $('navHistory');
 
 configInfo.textContent = `POST: ${API_BASE}  •  GET: ${SHORT_PATH_PREFIX}:code`;
 
@@ -107,3 +109,13 @@ longUrl.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') shorten();
     if (e.key === 'Escape') { longUrl.value = ''; clearError(); }
 });
+
+
+dashboardBtn.addEventListener('click', () => {
+    window.location.href = "dashboard.html";
+});
+
+History.addEventListener('click', async () => {
+    window.location.href = "../HistoryPage/history.html";
+});
+

@@ -326,3 +326,43 @@ footer {
 @media (max-width: 480px) {
   .auth-card { padding: 22px; }
 }
+
+.history-card {
+  width: 100%;
+  max-width: 750px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,0.08);
+  margin: 0 auto;
+  padding: 38px 26px 34px 26px;
+  text-align: left;
+}
+
+.history-card h2 {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  margin-bottom: 22px;
+  color: var(--acc-2);
+}
+
+.short-link {
+  color: var(--acc);
+  font-weight: 700;
+  text-decoration: none;
+  background: rgba(34,211,238,0.09);
+  padding: 3px 10px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.short-link:hover {
+  background: rgba(34,211,238,0.22);
+  color: var(--text);
+}
+
+@media(max-width: 900px) {
+  .history-card { padding: 22px 8px; }
+  table th, table td { padding: 8px 6px; font-size: 13px;}
+}

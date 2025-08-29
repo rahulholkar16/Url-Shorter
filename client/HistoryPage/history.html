@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../style.css">
+    <title>URL Shortener</title>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">Short<span>It</span></div>
+        <nav>
+            <a id="dashboardnav">Dashboard</a>
+            <a id="navHistory" style="color: var(--acc);">History</a>
+            <!-- ...add user profile logic here... -->
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="history-card">
+            <h2>Your Link History</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Original URL</th>
+                        <th>Short URL</th>
+                        <th>Date Created</th>
+                    </tr>
+                </thead>
+                <tbody id="historyBody">
+                    <tr>
+                        <td class="muted">https://example.com/long-url</td>
+                        <td>
+                            <a href="https://shortit.io/xyz" class="short-link">shortit.io/xyz</a>
+                        </td>
+                        <td>2025-08-29</td>
+                    </tr>
+                    <!-- Repeat rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 ShortIt. All rights reserved.
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
