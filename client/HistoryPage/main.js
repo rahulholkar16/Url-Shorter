@@ -12,21 +12,27 @@ async function historyFetch() {
 
         const data = await res.json();
 
-        const tbody = document.getElementById("historyBody");
+        const tbody = document.querySelector(".table-wrapper");
         tbody.innerHTML = "";  // Clear existing rows
 
         data.history.forEach(history => {
-            const tr = document.createElement("tr");
-            tr.innerHTML = `
-                <td class="muted">${history.origenalUrl}</td>
-                <td>
-                    <a href="http://localhost:3000/url/${history.sortUrl}" class="short-link" target="_blank" rel="noopener noreferrer">
-                        http://localhost:3000/url/${history.sortUrl}
-                    </a>
-                </td>
-                <td>${new Date(history.createdAt).toLocaleDateString()}</td>
+            const div = document.createElement("div");
+            div.className = "history-row";
+            div.innerHTML = `
+                <div class="field">
+                        <label>Original Link</label>
+                        <span class="original">${history.origenalUrl}</span>
+                    </div>
+                    <div class="field">
+                        <label>Short Link</label>
+                        <a href="https://localhost:3000/url${history.sortUrl}" class="short-link">https://localhost:3000/url/${history.sortUrl}</a>
+                    </div>
+                    <div class="field">
+                        <label>Date</label>
+                        <span class="date">${history.createdAt}</span>
+                    </div>
             `;
-            tbody.appendChild(tr);
+            tbody.appendChild(div);
         });
 
     } catch (error) {
