@@ -39,6 +39,7 @@ body {
   padding: 0 20px;
 }
 
+
 .navbar{
   width: 100%;
   max-width: 1200px;
@@ -69,6 +70,7 @@ body {
   color: var(--text);
   font-weight: 600;
   transition: color 0.2s ease;
+  cursor: pointer;
 }
 
 .navbar a:hover {
