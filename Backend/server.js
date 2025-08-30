@@ -23,3 +23,4 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/api/v1', route);
 app.use('/url', route);
+module.exports = serverless(app);
