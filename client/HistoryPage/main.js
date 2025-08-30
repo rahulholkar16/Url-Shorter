@@ -4,7 +4,7 @@ const History = $('navHistory');
 
 async function historyFetch() {
     try {
-        const res = await fetch('http://localhost:3000/api/v1/history', {
+        const res = await fetch('api/v1/history', {
             method: "GET",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
@@ -25,7 +25,7 @@ async function historyFetch() {
                     </div>
                     <div class="field">
                         <label>Short Link</label>
-                        <a href="https://localhost:3000/url${history.sortUrl}" class="short-link">https://localhost:3000/url/${history.sortUrl}</a>
+                        <a href="https://localhost:3000/url${history.sortUrl}" class="short-link">url/${history.sortUrl}</a>
                     </div>
                     <div class="field">
                         <label>Date</label>

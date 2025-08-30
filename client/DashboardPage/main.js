@@ -3,7 +3,7 @@
 //   - POST to   http://localhost:3000/url   with JSON { url }
 //   - Redirect is served at http://localhost:3000/url/:code
 // If mounted at root (app.use('/', route)), then prefix can be "".
-const API_BASE = 'http://localhost:3000/api/v1';   // POST endpoint for creating short link
+const API_BASE = 'api/v1';   // POST endpoint for creating short link
 const SHORT_PATH_PREFIX = '/url/';              // where GET ":code" is handled (include leading and trailing slashes as needed)
 // ====================================================
 

@@ -4,7 +4,7 @@ const NavLoginBtn = document.querySelector('.NavLogin');
 const SignUpBtn = document.querySelector('.signup');
 
 getStartedBtn.addEventListener("click", async () => {
-    const response = await fetch("/api/v1/dashboard", {
+    const response = await fetch("api/v1/dashboard", {
         method: "GET",
         credentials: "include"
     })
