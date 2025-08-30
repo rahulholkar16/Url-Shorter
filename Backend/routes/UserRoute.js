@@ -1,4 +1,4 @@
-import { bcrypt, express, nanoid, UrlModel, UserModel, auth, jwt, path, fileURLToPath} from "../utils/ImortExport.js";
+import { bcrypt, express, nanoid, UrlModel, UserModel, auth, jwt, path, fileURLToPath } from "../utils/ImortExport.js";
 import { authValidationSchema } from "../Validation/authValidation.js";
 import { UrlValidation } from "../Validation/UrlValidation.js";
 
@@ -11,7 +11,7 @@ route.post('/signup', async (req, res) => {
 
     // Validation
     const result = authValidationSchema.safeParse({ name, email, password });
-    if(!result.success) {
+    if (!result.success) {
         return res.status(400).json({
             msg: "Validation failed!",
             error: result.error.issues.map(issue => ({
@@ -28,7 +28,7 @@ route.post('/signup', async (req, res) => {
 
         // create hash for password
         const hash = await bcrypt.hash(result.data.password, 5);
-        
+
         // add in db
         await UserModel.create({
             name: result.data.name,
@@ -53,7 +53,7 @@ route.post('/login', async (req, res) => {
         if (!user) return res.status(400).json({ msg: "Invalid email and password!" });
 
         const ok = await bcrypt.compare(password, user?.password);
-        if(!ok) return res.status(400).json({ msg: "Invalid Password!" });
+        if (!ok) return res.status(400).json({ msg: "Invalid Password!" });
 
         const token = jwt.sign({ id: user?._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
         res.cookie("token", token, {
@@ -82,7 +82,7 @@ route.get('/dashboard', auth, (req, res) => {
     }
 });
 
-route.get('/history', auth,  async (req, res) => {
+route.get('/history', auth, async (req, res) => {
     try {
         const { userId } = req;
 
@@ -104,7 +104,7 @@ route.post('/short', auth, async (req, res) => {
     const { userId } = req
     const { url } = req.body;
     console.log(userId);
-    
+
 
     const result = UrlValidation.safeParse({ url });
     if (!result.success) {
@@ -128,9 +128,9 @@ route.post('/short', auth, async (req, res) => {
 
         // add url in userHistory
 
-        await UserModel.findByIdAndUpdate( userId, {
+        await UserModel.findByIdAndUpdate(userId, {
             $push: { userHistory: response._id }
-        } )
+        })
 
         return res.status(200).json({
             msg: "Url shorted!",
@@ -148,7 +148,7 @@ route.get('/:url', async (req, res) => {
     try {
         const exist = await UrlModel.findOne({ sortUrl: url });
         if (!exist) return res.status(401).json({ msg: "Invalid credentials" });
-        
+
         res.status(200).redirect(exist.origenalUrl);
     } catch (error) {
         console.error("Error creating course:", error);
