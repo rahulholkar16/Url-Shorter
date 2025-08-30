@@ -4,7 +4,7 @@ const History = $('navHistory');
 
 async function historyFetch() {
     try {
-        const res = await fetch('http://localhost:3000/api/v1/history', {
+        const res = await fetch('/api/v1/history', {
             method: "GET",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
@@ -18,6 +18,7 @@ async function historyFetch() {
         data.history.forEach(history => {
             const div = document.createElement("div");
             div.className = "history-row";
+            const shortUrl = `${window.location.origin}/url/${history.sortUrl}`;
             div.innerHTML = `
                 <div class="field">
                         <label>Original Link</label>
@@ -25,7 +26,7 @@ async function historyFetch() {
                     </div>
                     <div class="field">
                         <label>Short Link</label>
-                        <a href="https://localhost:3000/url${history.sortUrl}" class="short-link">https://localhost:3000/url/${history.sortUrl}</a>
+                        <a href="${shortUrl}" class="short-link">${shortUrl}</a>
                     </div>
                     <div class="field">
                         <label>Date</label>

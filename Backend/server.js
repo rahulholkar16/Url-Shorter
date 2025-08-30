@@ -14,7 +14,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use("/", express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // ----- Route -----
 // app.get('/', (req, res) => {
@@ -23,6 +23,3 @@ app.use("/", express.static(path.join(__dirname, '../public')));
 
 app.use('/api/v1', route);
 app.use('/url', route);
-app.listen(PORT, () => {
-    console.log("🚀 Server start at:", PORT);
-})
